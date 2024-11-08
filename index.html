@@ -19,7 +19,7 @@
 <body>
 
   <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">EDIT map title</div>
+  <div id="map-title">ABC stores in Raleigh</div>
   <div id="map"></div>
 
   <!-- Create the interactive map content with JavaScript (.js) -->
@@ -27,8 +27,8 @@
 
   /* Set up the initial map center and zoom level */
   var map = L.map('map', {
-    center: [41.77, -72.69], // EDIT coordinates to re-center map
-    zoom: 12,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
+    center: [35.8439338,-78.8098676], // EDIT coordinates to re-center map
+    zoom: 10,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
     scrollWheelZoom: false
   });
 
@@ -41,8 +41,18 @@
   }).addTo(map);
 
   /* Display a point marker with pop-up text */
-  L.marker([41.77, -72.69]).addTo(map) // EDIT marker coordinates
-  .bindPopup("Insert pop-up text here"); // EDIT pop-up text message
+  L.marker([35.778430, -78.675870]).addTo(map) // EDIT marker coordinates
+  .bindPopup("Wake County ABC (Vic score: 10/10)"); // EDIT pop-up text message
+
+  /* Display a point marker with pop-up text */
+  L.marker([35.778430, -78.627230]).addTo(map) // EDIT marker coordinates
+  .bindPopup("Wake County abc 9 (Vic score: 6/10)"); // EDIT pop-up text message
+
+  /* Display a point marker with pop-up text */
+  L.marker([35.780030, -78.658550]).addTo(map) // EDIT marker coordinates
+  .bindPopup("Wake County abc 8 (Vic score: 7/10)"); // EDIT pop-up text message
+
+
 
   </script>
 </body>
