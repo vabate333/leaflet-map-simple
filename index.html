@@ -1,15 +1,15 @@
-<!DOCTYPE html>  
+<!DOCTYPE html> 
 <html>
 <head>
   <title>leaflet-map-simple</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
 
-  <!-- Load Leaflet code library -->
+  <!-- Load Leaflet code library: see https://leafletjs.com/download.html -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
 
-  <!-- Position the map and title with CSS -->
+  <!-- Position the map and title with Cascading Style Sheet (CSS) -->
   <style>
   body { margin:0; padding:0; display: flex; height: 100vh; }
   #map { 
@@ -62,7 +62,7 @@
 </head>
 <body>
 
-  <!-- Display the map and title with HTML -->
+  <!-- Display the map and title with HTML division tags  -->
   <div id="map-title">GIS495 Final Draft Story Map Vic Abate</div>
   <div id="map"></div>
 
@@ -78,45 +78,35 @@
     </div>
   </div>
 
-  <!-- Create the interactive map content with JavaScript -->
+  <!-- Create the interactive map content with JavaScript (.js) -->
   <script>
 
   /* Set up the initial map center and zoom level */
   var map = L.map('map', {
-    center: [35.8439338, -78.8098676], // EDIT coordinates to re-center map
-    zoom: 7,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
+    center: [35.8439338,-78.8098676], // EDIT coordinates to re-center map
+    zoom: 10,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
     scrollWheelZoom: false
   });
 
-  /* display basemap tiles */
+  /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
   L.tileLayer(
     'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors, &copy;\
+      attribution: '&copy; <a href="https://osm.org/copyright">\
+        OpenStreetMap</a> contributors, &copy;\
         <a href="https://carto.com/attribution">CARTO</a>'
   }).addTo(map);
 
-  // Load the GeoJSON data from a local or remote URL (adjust URL to point to your file)
-  var geojsonPath = "path/to/your/GeoJSON/NC_County_Boundaries.geojson"; // Update the path or URL to the actual location of your GeoJSON file
+  /* Display a point marker with pop-up text */
+  L.marker([35.778430, -78.675870]).addTo(map) // EDIT marker coordinates
+  .bindPopup("Wake County ABC (Vic score: 10/10)"); // EDIT pop-up text message
 
-  // Fetch and add the GeoJSON to the map
-  fetch(geojsonPath)
-    .then(response => response.json())
-    .then(data => {
-      // Add GeoJSON layer to the map
-      L.geoJSON(data, {
-        onEachFeature: function (feature, layer) {
-          layer.on({
-            click: function () {
-              var countyName = feature.properties.name; // Adjust based on your GeoJSON properties
-              var vicScore = feature.properties.vicScore || "N/A"; // Adjust this property based on your data
-              layer.bindPopup(countyName + " (Vic score: " + vicScore + ")");
-              layer.openPopup();
-            }
-          });
-        }
-      }).addTo(map);
-    })
-    .catch(err => console.error("Failed to load GeoJSON:", err));
+  /* Display a point marker with pop-up text */
+  L.marker([35.778430, -78.627230]).addTo(map) // EDIT marker coordinates
+  .bindPopup("Wake County abc 9 (Vic score: 6/10)"); // EDIT pop-up text message
+
+  /* Display a point marker with pop-up text */
+  L.marker([35.780030, -78.658550]).addTo(map) // EDIT marker coordinates
+  .bindPopup("Wake County abc 8 (Vic score: 7/10)"); // EDIT pop-up text message
 
   </script>
 </body>
